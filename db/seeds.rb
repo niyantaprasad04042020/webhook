@@ -6,6 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-webhook_endpoint = WebhookEndpoint.create!(url: "https://example/webhook")
+webhook_endpoint = WebhookEndpoint.create!(url: "https://localhost:3000/webhook")
 
 webhook_endpoint.webhook_events.create!( event: 'product.create', payload: { product_id: 1 })

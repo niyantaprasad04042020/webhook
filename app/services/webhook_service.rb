@@ -4,7 +4,6 @@ class WebhookService
   end
 
   def call
-    byebug
     WebhookEndpoint.find_each do |webhook_endpoint|
       webhook_event = WebhookEvent.create!(
         webhook_endpoint: webhook_endpoint,

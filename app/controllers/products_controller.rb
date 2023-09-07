@@ -21,10 +21,13 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
+    @event = "product.created" 
     @product = Product.new(product_params)
 
     respond_to do |format|
       if @product.save
+
+        WebhookService.call(event: @event, payload: @product)
         format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else
@@ -36,8 +39,10 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    @event = "product.updated"
     respond_to do |format|
       if @product.update(product_params)
+        WebhookService.call(@event, @product)
         format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else

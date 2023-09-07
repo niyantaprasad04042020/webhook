@@ -17,7 +17,7 @@ class WebhookWorker
           'Content-Type' => 'application/json',
         )
         .post(
-          endpoint.url,
+          "https://webhook.site/c5ddc08f-882d-4333-8929-3d96eafdff23",
           body: {
             event: event.event,
             payload: event.payload,
@@ -30,7 +30,6 @@ class WebhookWorker
         body: response.body.to_s,
       })
       
-      byebug
       raise StandardError unless response.status.success?    
     rescue HTTP::TimeoutError
       event.update(response: { error: 'TIMEOUT_ERROR' })

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_07_172528) do
+ActiveRecord::Schema.define(version: 2023_09_07_181915) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2023_09_07_172528) do
     t.text "payload", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.json "response", default: {}
     t.index ["webhook_endpoint_id"], name: "index_webhook_events_on_webhook_endpoint_id"
   end
 
